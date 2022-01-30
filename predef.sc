@@ -3,12 +3,8 @@
 // slf4j (nop)
 import $ivy.`org.slf4j:slf4j-nop:1.7.35`
 
-// unix like command
-def wd = new java.io.File(".").getCanonicalFile
-def pwd = wd.getAbsolutePath
-
 // LINE Notify
-val line = new {
+lazy val line = new {
   private lazy val accessToken = sys.env("LINE_NOTIFY_TOKEN")
 
   def notify(message: String): requests.Response = {
@@ -22,7 +18,7 @@ val line = new {
 
 // Twitter
 import $ivy.`org.twitter4j:twitter4j-core:4.0.7`
-val twitter = new {
+lazy val twitter = new {
   import twitter4j._
 
   private lazy val facade = new TwitterFactory(
@@ -35,14 +31,14 @@ val twitter = new {
       .build()
   ).getInstance
 
-  def notify(message: String): Unit = {
+  def notify(message: String): Status = {
     facade.updateStatus(message)
   }
 }
 
 // Slack
 import $ivy.`com.slack.api:slack-api-client:1.17.0`
-val slack = new {
+lazy val slack = new {
   import com.slack.api.Slack
   import com.slack.api.model.block.Blocks._
   import com.slack.api.model.block.composition.BlockCompositions._
