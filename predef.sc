@@ -11,8 +11,8 @@ val line = new {
   import sttp.client3.quick._
 
   def notify(message: String): Response[String] = {
-    quickRequest
-      .auth.bearer(sys.env("LINE_NOTIFY_TOKEN"))
+    quickRequest.auth
+      .bearer(sys.env("LINE_NOTIFY_TOKEN"))
       .post(uri"https://notify-api.line.me/api/notify")
       .body(Map("message" -> message))
       .send(backend)
