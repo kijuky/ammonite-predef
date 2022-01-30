@@ -7,5 +7,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.4.0
-      - name: Check for scalafmt conformance
-        uses: openlawteam/scalafmt-ci@v2.0.2
+      - name: Install Coursier
+        run: |
+          curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)"
+          chmod +x cs
+      - name: Install scalafmt
+        run: >
+          coursier bootstrap org.scalameta:scalafmt-cli_2.13:3.4.0
+            -r sonatype:snapshots --main org.scalafmt.cli.Cli
+            -o scalafmt
+      - name: Run Scalafmt
+        run: ./scalafmt --test
