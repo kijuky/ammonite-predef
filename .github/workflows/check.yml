@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.4.0
-      - name: Install Scalafmt
+      - name: Setup Scalafmt
         uses: coursier/setup-action@v1.1.2
         with:
           apps: scalafmt
