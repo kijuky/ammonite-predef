@@ -1,20 +1,14 @@
 # ammonite predef
 
+[Ammonite](https://ammonite.io/) の事前定義スクリプトです。
+
 ## インストール
 
 ```shell
 $ git clone https://github.com/kijuky/ammonite-predef.git ~/.ammonite
 ```
 
-### for mac
-
-```shell
-$ brew install ammonite-repl
-```
-
-### for windows
-
-TODO
+.ammonite フォルダを上書きするため、既に predef.sc を用意している場合はバックアップしてください。
 
 ## 使い方
 
