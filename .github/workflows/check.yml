@@ -7,12 +7,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.4.0
-      - name: Install Coursier
-        run: |
-          curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)"
-          chmod +x cs
-          echo "$HOME/.local/share/coursier/bin" >> $GITHUB_PATH
       - name: Install Scalafmt
-        run: ./cs install scalafmt
+        uses: coursier/setup-action@v1.1.2
+        with:
+          apps: scalafmt
       - name: Test Scalafmt
         run: scalafmt --test
