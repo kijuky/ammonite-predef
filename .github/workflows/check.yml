@@ -13,8 +13,6 @@ jobs:
           chmod +x cs
       - name: Install scalafmt
         run: >
-          ./cs bootstrap org.scalameta:scalafmt-cli_2.13:3.4.0
-            -r sonatype:snapshots --main org.scalafmt.cli.Cli
-            -o scalafmt
+          ./cs install scalafmt
       - name: Run Scalafmt
-        run: ./scalafmt --test
+        run: scalafmt --test
