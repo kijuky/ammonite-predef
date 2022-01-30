@@ -23,3 +23,19 @@ export LINE_NOTIFY_TOKEN="発行したアクセストークン"
 ```
 @ line notify "foobar"
 ```
+
+### Slack
+
+[Slack Incoming-Webhook を追加](https://slack.com/intl/ja-jp/help/articles/115005265063) して Webhook URL を発行する。
+
+```shell
+export SLACK_WEBHOOK_URL="発行したWebhook Url"
+```
+
+```shell
+@ slack notify ":candy: はい、アメちゃん！"
+```
+
+#### 参考
+
+- https://slack.dev/java-slack-sdk/guides/ja/incoming-webhooks
