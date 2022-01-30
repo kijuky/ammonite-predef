@@ -36,6 +36,10 @@ export SLACK_WEBHOOK_URL="発行したWebhook Url"
 @ slack notify ":candy: はい、アメちゃん！"
 ```
 
+slack の表示名でもメンションできます。
+
 #### 参考
 
 - https://slack.dev/java-slack-sdk/guides/ja/incoming-webhooks
+- https://slack.dev/java-slack-sdk/guides/ja/composing-messages
+  - https://app.slack.com/block-kit-builder
