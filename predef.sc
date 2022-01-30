@@ -45,7 +45,7 @@ lazy val slack = new {
   import com.slack.api.webhook.WebhookPayloads._
   import com.slack.api.webhook.WebhookResponse
 
-  private lazy val facade = Slack.getInstance()
+  private lazy val facade = Slack.getInstance
   private lazy val webhookUrl = sys.env("SLACK_WEBHOOK_URL")
 
   def notify(message: String): WebhookResponse = {
