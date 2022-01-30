@@ -1,8 +1,5 @@
 // predef for repl
 
-// sttp
-import $ivy.`com.softwaremill.sttp.client3::core:3.4.1`
-
 // slf4j (nop)
 import $ivy.`org.slf4j:slf4j-nop:1.7.35`
 
@@ -12,14 +9,14 @@ def pwd = wd.getAbsolutePath
 
 // LINE Notify
 val line = new {
-  import sttp.client3.quick._
+  private lazy val accessToken = sys.env("LINE_NOTIFY_TOKEN")
 
-  def notify(message: String): sttp.client3.Response[String] = {
-    quickRequest.auth
-      .bearer(sys.env("LINE_NOTIFY_TOKEN"))
-      .post(uri"https://notify-api.line.me/api/notify")
-      .body(Map("message" -> message))
-      .send(backend)
+  def notify(message: String): requests.Response = {
+    requests.post(
+      "https://notify-api.line.me/api/notify",
+      data = Map("message" -> message),
+      headers = Map("Authorization" -> s"Bearer $accessToken")
+    )
   }
 }
 
