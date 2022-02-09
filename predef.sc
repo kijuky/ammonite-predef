@@ -65,12 +65,10 @@ def clip[A: scala.reflect.ClassTag]: Option[A] = {
   import java.awt.datatransfer.DataFlavor._
   val flavors = Seq(stringFlavor, imageFlavor)
 
-  flavors
-    .flatMap { flavor =>
-      scala.util.Try(clipboard.getData(flavor)).getOrElse(null) match {
-        case value: A => Some(value)
-        case _        => None
-      }
+  flavors.flatMap { flavor =>
+    scala.util.Try(clipboard.getData(flavor)).getOrElse(null) match {
+      case value: A => Some(value)
+      case _        => None
     }
-    .headOption
+  }.headOption
 }
