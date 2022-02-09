@@ -56,3 +56,21 @@ lazy val slack = new {
     )
   }
 }
+
+// clipboard
+def clip[A: scala.reflect.ClassTag]: Option[A] = {
+  val toolkit = java.awt.Toolkit.getDefaultToolkit
+  val clipboard = toolkit.getSystemClipboard
+
+  import java.awt.datatransfer.DataFlavor._
+  val flavors = Seq(stringFlavor, imageFlavor)
+
+  flavors
+    .flatMap { flavor =>
+      scala.util.Try(clipboard.getData(flavor)).getOrElse(null) match {
+        case value: A => Some(value)
+        case _        => None
+      }
+    }
+    .headOption
+}
