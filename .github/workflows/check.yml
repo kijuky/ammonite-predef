@@ -6,10 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v2
       - name: Setup Scalafmt
-        uses: coursier/setup-action@v1.1.2
-        with:
-          apps: scalafmt
-      - name: Test Scalafmt
-        run: scalafmt --test
+        uses: coursier/setup-action@v1
+      - name: Check Scalafmt
+        run: sbt scalafmtCheck scalafmtSbtCheck Test/scalafmtCheck
